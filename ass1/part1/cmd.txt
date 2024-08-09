@@ -1,0 +1,19 @@
+sbin/start-dfs.sh && sbin/start-yarn.sh
+jbs (6 process)
+bin/hdfs dfs -ls /
+bin/hdfs dfs -mkdir /ass1-1
+bin/hdfs dfs -put /Users/liulei/Desktop/mie1628/ass1/shakespeare.txt /ass1-1
+
+
+bin/hadoop jar /Users/liulei/mie1628_hadoop/hadoop-3.4.0/share/hadoop/tools/lib//hadoop-streaming-3.4.0.jar -file /Users/liulei/Desktop/mie1628/ass1/mapper.py
+-mapper "python3 mapper.py" \
+-file /Users/liulei/Desktop/mie1628/ass1/reducer.py \
+-reducer "python3 reducer.py"\
+-input /ass1-1/shakespeare.txt -output ass1-1_out \
+
+<for removing output folder in /user/liulei>
+bin/hdfs dfs -rm -r /user/liulei/ass1-1_out
+
+open the output:
+bin/hdfs dfs -cat /user/liulei/ass1-1_out/part-00000
+

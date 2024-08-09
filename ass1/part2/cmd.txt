@@ -1,0 +1,17 @@
+sbin/start-dfs.sh && sbin/start-yarn.sh
+jbs (6 process)
+bin/hdfs dfs -ls /
+bin/hdfs dfs -mkdir /ass1-2
+bin/hdfs dfs -put /Users/liulei/Desktop/mie1628/ass1/part2/data_points.txt /ass1-2
+bin/hdfs dfs -put /Users/liulei/Desktop/mie1628/ass1/part2/centroids.txt /ass1-2
+
+cp automation.py /Users/liulei/mie1628_hadoop/hadoop-3.4.0
+
+Run the automation script in %HADOOP_HOME%
+python3 automation.py
+
+open the output:
+bin/hdfs dfs -cat /ass1-2_out/part-00000
+
+sbin/stop-all.sh
+
